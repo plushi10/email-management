@@ -1,3 +1,5 @@
+import { userUI,type userDate} from "../components/user.js";
+
 export function loginPage (app: HTMLElement ): void{
     app.innerHTML = `
     <h1>log in</h1>
@@ -18,8 +20,10 @@ export function loginPage (app: HTMLElement ): void{
 
     let testEmail: string = "gigi@gmail.com";
     let testPassw: string = "1234";
+    const userTest = new userUI(testEmail,testPassw,"gigi99","gigino");
 
-    function logIn(): void{
+
+    /*function logIn(): void{
         const email = emailBox.value.trim();
         const password = passwordBox.value.trim()
         if((email === testEmail) && (password === testPassw)){
@@ -27,7 +31,16 @@ export function loginPage (app: HTMLElement ): void{
         }else{
             console.log("error during the access");
         }
-    }
+    }*/
 
-    submitLogin?.addEventListener("click",logIn);
+    submitLogin?.addEventListener("click",() => {
+        const isLoggedIn = userTest.logIn(emailBox.value, passwordBox.value);
+        if(isLoggedIn){
+            console.log(userTest.email,userTest.password);
+            console.log("you are in");
+        }else{
+            console.log("error during the access");
+        }
+    });
+
 }

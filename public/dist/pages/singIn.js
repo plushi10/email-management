@@ -1,0 +1,26 @@
+export function singinPage(app) {
+    app.innerHTML = `
+        <h1>Sing In</h1> 
+        <p>Email</p>
+        <input type="email" name="emailSingin" id="emailSingin" required> <br>
+        <p>Password</p>
+        <input type="text" name="passwordSingin" id="passwordSingin" required> <br>
+        <p>Username</p>
+        <input type="text" name="usernameSingin" id="usernameSingin" required> <br>
+        <p>Name</p>
+        <input type="text" name="nameSingin" id="nameSingin" > <br>
+        <p>Surename</p>
+        <input type="text" name="surenameSingin" id="surenameSingin" > <br>
+        <p>Date born</p>
+        <input type="date" name="bornlSingin" id="bornSingin" > <br>
+    
+    <div class="submit">
+        <input type="button" id="logIn" value="logIn">
+        <p>Already have an account? <a href="">Sing in</a></p>
+    </div>
+    `;
+    const email = document.getElementById("emailSingin");
+    const password = document.getElementById("passwordSingin");
+    const username = document.getElementById("usernameSingin");
+}
+//# sourceMappingURL=singIn.js.map
