@@ -25,9 +25,12 @@ export class userUI implements userDate {
     }
    
 
-    singIn(email: string, password: string, username: string, name? : string, surename? : string, dateBorn? : Date):boolean{
+    singIn():boolean{
         //method for insert the new user into the DB
-        return true
+        if(this.email.trim() !== '' && this.password.trim() !== '' && this.username.trim() !== '' || this.name?.trim() !== '' || this.surename?.trim() !== '' || this.dateBorn?.getDate() !== 0){
+            return false;
+        }            
+        return true;
     }
 
     logIn(email: string, password: string):boolean{

@@ -9,7 +9,7 @@ export function loginPage (app: HTMLElement ): void{
     <input type="text" name="password" id="password" required> <br> 
     <div class="submit">
         <input type="button" id="logIn" value="logIn">
-        <p>Already have an account? <a href="">Sing in</a></p>
+        <p>Already have an account? <a href="#" id='toSingIn'>Sing in</a></p>
     </div>
     `;
 
@@ -20,18 +20,13 @@ export function loginPage (app: HTMLElement ): void{
 
     let testEmail: string = "gigi@gmail.com";
     let testPassw: string = "1234";
-    const userTest = new userUI(testEmail,testPassw,"gigi99","gigino");
+    const userTest = new userUI(emailBox.value,passwordBox.value,"gigino");
 
 
-    /*function logIn(): void{
-        const email = emailBox.value.trim();
-        const password = passwordBox.value.trim()
-        if((email === testEmail) && (password === testPassw)){
-            console.log("you are in");
-        }else{
-            console.log("error during the access");
-        }
-    }*/
+    document.getElementById("toSingIn")?.addEventListener("click", (e)=>{
+        e.preventDefault();
+        window.location.hash = "#singIn";
+    })
 
     submitLogin?.addEventListener("click",() => {
         const isLoggedIn = userTest.logIn(emailBox.value, passwordBox.value);

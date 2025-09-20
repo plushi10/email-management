@@ -1,4 +1,6 @@
+import { userUI } from "../components/user.js";
 export function singinPage(app) {
+    var _a;
     app.innerHTML = `
         <h1>Sing In</h1> 
         <p>Email</p>
@@ -16,11 +18,22 @@ export function singinPage(app) {
     
     <div class="submit">
         <input type="button" id="logIn" value="logIn">
-        <p>Already have an account? <a href="">Sing in</a></p>
+        <p>Already have an account? <a href="#" id='toLogIn'>Log in</a></p>
     </div>
     `;
+    (_a = document.getElementById("toLogIn")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.hash = "#logIn";
+    });
     const email = document.getElementById("emailSingin");
     const password = document.getElementById("passwordSingin");
     const username = document.getElementById("usernameSingin");
+    const name = document.getElementById("nameSingin");
+    const surename = document.getElementById("surenameSingin");
+    const bornDate = document.getElementById("bornSingin");
+    let user = new userUI(email.value, password.value, username.value);
+    if (!user.singIn()) {
+        user = null;
+    }
 }
 //# sourceMappingURL=singIn.js.map

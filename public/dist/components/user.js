@@ -7,8 +7,12 @@ export class userUI {
         this.surename = surename;
         this.dateBorn = dateBorn;
     }
-    singIn(email, password, username, name, surename, dateBorn) {
+    singIn() {
+        var _a, _b, _c;
         //method for insert the new user into the DB
+        if (this.email.trim() !== '' && this.password.trim() !== '' && this.username.trim() !== '' || ((_a = this.name) === null || _a === void 0 ? void 0 : _a.trim()) !== '' || ((_b = this.surename) === null || _b === void 0 ? void 0 : _b.trim()) !== '' || ((_c = this.dateBorn) === null || _c === void 0 ? void 0 : _c.getDate()) !== 0) {
+            return false;
+        }
         return true;
     }
     logIn(email, password) {
