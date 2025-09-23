@@ -1,0 +1,11 @@
+form user table :
+    1 - for insert a new user
+
+    INSERT INTO `user`  (email, password, username, name, surename, date)
+    VALUES ('esempio@email.com', 'password123', 'username1', 'Mario', 'Rossi', '1990-05-20');
+
+    2 - take the user by the email
+    select u.email, u.password 
+    from user u
+    where u.email = "esempio@email.com"
+

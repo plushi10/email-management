@@ -1,46 +1,27 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    // File Layout
     "rootDir": "./src",
     "outDir": "./public/dist",
 
     // Environment Settings
-    // See also https://aka.ms/tsconfig/module
-    //"module": "nodenext",
-    "module": "ES6",
-    //"target": "esnext",
-    "target": "ES6",
-    "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    // "types": ["node"],
-    // and npm install -D @types/node
+    "module": "Nodenext",           // <-- change from commonjs to ESNext
+    "moduleResolution": "nodenext", // <-- use nodenext for Node ESM
+    "target": "ES2019",
+    "types": ["node"],
+    "esModuleInterop": true,
 
-    // Other Outputs
+    // Outputs
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
 
-    // Stricter Typechecking Options
+    // Type Checking
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": false,
-
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
-
-    // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": true,   // OK now with ESM
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true,
+    "skipLibCheck": true
   }
 }
