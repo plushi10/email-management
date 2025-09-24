@@ -1,4 +1,5 @@
 import { userUI } from "../components/user.js";
+import { userService } from "../services/userRepository.js";
 export function loginPage(app) {
     var _a;
     app.innerHTML = `
@@ -15,22 +16,24 @@ export function loginPage(app) {
     let emailBox = document.getElementById("email");
     let passwordBox = document.getElementById("password");
     let submitLogin = document.getElementById("logIn");
-    let testEmail = "gigi@gmail.com";
-    let testPassw = "1234";
-    const userTest = new userUI(emailBox.value, passwordBox.value, "gigino");
+    // change the page to singIn
     (_a = document.getElementById("toSingIn")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", (e) => {
         e.preventDefault();
         window.location.hash = "#singIn";
     });
-    submitLogin === null || submitLogin === void 0 ? void 0 : submitLogin.addEventListener("click", () => {
-        const isLoggedIn = userTest.logIn(emailBox.value, passwordBox.value);
-        if (isLoggedIn) {
-            console.log(userTest.email, userTest.password);
+    submitLogin === null || submitLogin === void 0 ? void 0 : submitLogin.addEventListener("click", async () => {
+        const userTest = await userService.findUser(emailBox.value, passwordBox.value);
+        if (userTest === null)
+            console.log("error");
+        else
             console.log("you are in");
-        }
-        else {
-            console.log("error during the access");
-        }
+        //const isLoggedIn = userTest.logIn(emailBox.value, passwordBox.value);
+        // if(isLoggedIn){
+        //     console.log(userTest.email,userTest.password);
+        //     console.log("you are in");
+        // }else{
+        //     console.log("error during the access");
+        // }
     });
 }
 //# sourceMappingURL=logIn.js.map

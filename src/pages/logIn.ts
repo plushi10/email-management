@@ -1,4 +1,5 @@
 import { userUI,type userDate} from "../components/user.js";
+import { userService } from "../services/userRepository.js";
 
 export function loginPage (app: HTMLElement ): void{
     app.innerHTML = `
@@ -18,24 +19,28 @@ export function loginPage (app: HTMLElement ): void{
     let passwordBox = document.getElementById("password") as HTMLInputElement;
     let submitLogin = document.getElementById("logIn");
 
-    let testEmail: string = "gigi@gmail.com";
-    let testPassw: string = "1234";
-    const userTest = new userUI(emailBox.value,passwordBox.value,"gigino");
-
-
+    
+    // change the page to singIn
     document.getElementById("toSingIn")?.addEventListener("click", (e)=>{
         e.preventDefault();
         window.location.hash = "#singIn";
     })
-
-    submitLogin?.addEventListener("click",() => {
-        const isLoggedIn = userTest.logIn(emailBox.value, passwordBox.value);
-        if(isLoggedIn){
-            console.log(userTest.email,userTest.password);
+    
+    submitLogin?.addEventListener("click",async () => {
+        
+        const userTest = await userService.findUser(emailBox.value, passwordBox.value);
+        
+        if(userTest === null)
+            console.log("error")
+        else
             console.log("you are in");
-        }else{
-            console.log("error during the access");
-        }
+        //const isLoggedIn = userTest.logIn(emailBox.value, passwordBox.value);
+        // if(isLoggedIn){
+        //     console.log(userTest.email,userTest.password);
+        //     console.log("you are in");
+        // }else{
+        //     console.log("error during the access");
+        // }
     });
 
 }

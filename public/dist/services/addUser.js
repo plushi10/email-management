@@ -1,14 +1,17 @@
 import { pool, testConnection } from "../db/connection.js";
 import { userUI } from "../components/user.js";
-async function main() {
-    var _a;
+async function addUser(email, password, username, name, surename, date) {
     await testConnection();
-    const [rows] = await pool.query("SELECT * FROM user");
-    console.log(rows);
-    const user = rows.map(row => new userUI(row.email, row.password, row.username, row.name, row.surename, row.dateBorn));
-    const email = (_a = user[0]) === null || _a === void 0 ? void 0 : _a.email;
-    console.log(email);
+    const sql = "INSERT INTO `user`  (email, password, username, name, surename, date) VALUES (?,?,?,?,?,?);";
+    const values = [email, password, username, name, surename, date];
+    try {
+        const [rows] = await pool.query(sql, values);
+        console.log("succes, user data : ", rows);
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 //node public/dist/services/addUser.js
-main();
+addUser("john.doe@example.co", "strongP@ssw0rd", "johndoe", "John", "Doe", new Date("1990-05-20"));
 //# sourceMappingURL=addUser.js.map
