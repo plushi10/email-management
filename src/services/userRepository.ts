@@ -1,7 +1,6 @@
 import { pool, testConnection} from "../db/connection.js";
 import { userUI, type userDate } from "../components/user.js";
 import type { ResultSetHeader, RowDataPacket } from "mysql2";
-import type { promises } from "dns";
 
 // addUser("john.doe@example.co","strongP@ssw0rd","johndoe","John","Doe",new Date("1990-05-20"));
 //
@@ -43,12 +42,12 @@ export const userService = {
             values = [email,password];
         }else{
             sql = "select u.email, u.password from user u where u.email = ? and u.password = ? and u.username = ?;";
-            values = [email,username!];
+            values = [email,password,username!];
         }
         
         try {
             const [rows] = await pool.query<DBuser[]>(sql,values);
-            console.log(rows);
+            //console.log(rows);
 
             const row = rows[0];
             if(!row)
